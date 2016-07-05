@@ -1,10 +1,11 @@
+#blur program for Images Project by RSS
+#initializations
 import sys
 from PIL import Image
 
-# define your flip function here
+#blurs and displays an image
 def blur(img):
     width, height = img.size
-    print width, height
     imgdup = img.copy()
     pixels = imgdup.load()
     for x in range(0, width):
@@ -13,8 +14,11 @@ def blur(img):
             pixels[x,y]=avg(r)
     imgdup.show()
 
+#returns the average value of a list of numbers
 def avg(data):
     return sum(data)/len(data)
+
+#defines a pixel region surrounding a specific point
 def region3x3(img,x,y):
     me =getpixel(img,x,y)
     N=getpixel(img,x,y-1)
@@ -26,6 +30,8 @@ def region3x3(img,x,y):
     SE=getpixel(img,x+1,y+1)
     SW=getpixel(img,x-1,y+1)
     return [me,N,S,E,W,NW,NE,SE,SW]
+
+#returns a specific pixel
 def getpixel(img,x,y):
     width,height=img.size
     if x<0:
@@ -38,17 +44,12 @@ def getpixel(img,x,y):
         y=height-1
     return img.load()[x,y]
 
-#print avg([1,2,3,4,5])
+#program start
 if len(sys.argv)<=1:
 	print "missing image filename"
 	sys.exit(1)
 filename = sys.argv[1]
 img = Image.open(filename)
 img = img.convert("L")
-print getpixel(img,0,0)
-print getpixel(img,0,1)
-print getpixel(img,10,20)
-
-# call your flip function here
 img.show()
 blur(img)

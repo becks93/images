@@ -17,7 +17,8 @@ def denoise(img):
 #returns the median value of a list of numbers
 def median(data):
     data.sort()
-    return data[len(data/2)]
+    med_index = len(data)/2
+    return data[med_index]
 
 #defines a pixel region surrounding a specific point
 def region3x3(img,x,y):

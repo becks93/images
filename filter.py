@@ -9,7 +9,7 @@ def filter(img, f):
         for y in range(0, height):
             r = region3x3(img, x, y)
             pixels[x, y] = f(r)
-    imgdup.show()
+    return imgdup
 
 #defines a pixel region surrounding a specific point
 def region3x3(img,x,y):

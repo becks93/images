@@ -2,9 +2,8 @@
 #initializations
 from filter import *
 
-def laplace(img):
-    surrounding = region3x3(img,x,y)
-    return sum(surrounding[4, 1] -4*surrounding[0]
+def laplace(data):
+    return data[1]+data[2]+data[3]+data[4] -4*data[0]
 
 #program start
 img = open(sys.argv)
